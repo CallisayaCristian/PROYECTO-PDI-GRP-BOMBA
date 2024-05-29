@@ -24,5 +24,25 @@ namespace PDI_ProyectoGrpBomba
         {
             InitializeComponent();
         }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void btnMinizar_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+        private void btnLoadImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGeoShapesInfoShow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       
     }
 }

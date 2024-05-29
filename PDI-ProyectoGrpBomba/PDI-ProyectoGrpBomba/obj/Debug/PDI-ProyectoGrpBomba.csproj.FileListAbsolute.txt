@@ -1,0 +1,16 @@
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\bin\Debug\PDI-ProyectoGrpBomba.exe.config
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\bin\Debug\PDI-ProyectoGrpBomba.exe
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\bin\Debug\PDI-ProyectoGrpBomba.pdb
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.csproj.SuggestedBindingRedirects.cache
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\MainWindow.g.cs
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\App.g.cs
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba_MarkupCompile.cache
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba_MarkupCompile.lref
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\MainWindow.baml
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.g.resources
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI_ProyectoGrpBomba.Properties.Resources.resources
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.csproj.GenerateResource.cache
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.exe
+C:\Users\ASUS\Desktop\Practicando de imagenes\1 Proyecto Final\PROYECTO-PDI-GRP-BOMBA\PDI-ProyectoGrpBomba\PDI-ProyectoGrpBomba\obj\Debug\PDI-ProyectoGrpBomba.pdb
