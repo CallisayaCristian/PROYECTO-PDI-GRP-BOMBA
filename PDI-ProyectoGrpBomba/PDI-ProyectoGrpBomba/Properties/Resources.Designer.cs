@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_.Properties
+namespace PDI_ProyectoGrpBomba.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PDI_ProyectoGrpBomba.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{992DACAF-4BCC-45B6-9B26-F5889FA3BF4B}</ProjectGuid>
+    <ProjectGuid>{B3A43D02-3FC4-4457-AB17-70A0FD85E64F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_</RootNamespace>
-    <AssemblyName>DETECCION-INFO-FIGURAS-GEOMETRICAS-GRUPO-BOMBA-PDI%28B%29</AssemblyName>
+    <RootNamespace>PDI_ProyectoGrpBomba</RootNamespace>
+    <AssemblyName>PDI-ProyectoGrpBomba</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

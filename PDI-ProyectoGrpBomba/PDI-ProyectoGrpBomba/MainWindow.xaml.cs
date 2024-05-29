@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_
+namespace PDI_ProyectoGrpBomba
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

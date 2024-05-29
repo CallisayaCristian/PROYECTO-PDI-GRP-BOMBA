@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_.Properties
+namespace PDI_ProyectoGrpBomba.Properties
 {
 
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DETECCION_INFO_FIGURAS_GEOMETRICAS_GRUPO_BOMBA_PDI_B_
+namespace PDI_ProyectoGrpBomba
 {
     /// <summary>
     /// Interaction logic for App.xaml

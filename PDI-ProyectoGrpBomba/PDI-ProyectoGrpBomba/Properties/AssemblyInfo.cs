@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DETECCION-INFO-FIGURAS-GEOMETRICAS-GRUPO-BOMBA-PDI(B)")]
+[assembly: AssemblyTitle("PDI-ProyectoGrpBomba")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HP")]
-[assembly: AssemblyProduct("DETECCION-INFO-FIGURAS-GEOMETRICAS-GRUPO-BOMBA-PDI(B)")]
+[assembly: AssemblyProduct("PDI-ProyectoGrpBomba")]
 [assembly: AssemblyCopyright("Copyright © HP 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
