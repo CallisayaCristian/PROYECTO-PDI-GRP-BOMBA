@@ -1,0 +1,47 @@
+﻿<Window x:Class="PDI_ProyectoGrpBomba.Welcome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PDI_ProyectoGrpBomba"
+        mc:Ignorable="d"
+        Title="SmsBien" Height="550" Width="800"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"   
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="15" Background="#212529">
+        <Border CornerRadius="12"                    
+            BorderThickness="3"
+            Opacity="0.9">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,7" EndPoint="1,1">
+                    <GradientStop Color="#FF07FFEE" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Grid>
+                <TextBlock Foreground="#FF03ADC5" FontSize="18" FontWeight="Bold" Margin="57,15,630,507" 
+                               Height="NaN" 
+                               Width="NaN" TextAlignment="Center"><Run Language="es-es" Text="FIG-DETECT"/></TextBlock>
+                
+                <Image Source="/Img/Icono.png" Margin="13,5,742,504" />
+                <Image x:Name="imagen" Source="/Img/Icono.png" Margin="94,64,160,33" Opacity="0.5" ></Image>
+                <TextBlock Foreground="Cyan" FontSize="45" Margin="200,64,266,422" 
+            Height="NaN" 
+            Width="NaN" FontFamily="Rockwell Extra Bold" TextAlignment="Center"><Run Language="es-es" Text="Bienvenido"/></TextBlock>
+                <TextBlock Foreground="Cyan" FontSize="55" FontWeight="Bold" Margin="161,412,227,63" 
+            Height="NaN" 
+            Width="NaN" FontFamily="Rockwell Extra Bold"><Run Language="es-es" Text="FIG-DETECT"/></TextBlock>
+
+
+            </Grid>
+        </Border>
+    </Border>
+</Window>

@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="650" Width="1000">
 
     <Border CornerRadius="15" Background="#212529">
         <Border CornerRadius="12"                    
@@ -29,7 +29,7 @@
                             FontSize="20"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Click="btnClose_Click" Height="28" VerticalAlignment="Top" Margin="738,7,10,0" RenderTransformOrigin="0.5,0.5" Background="#FFED1717">
+                            Click="btnClose_Click" Height="28" VerticalAlignment="Top" Margin="945,7,10,0" RenderTransformOrigin="0.5,0.5" Background="#FFED1717">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -68,7 +68,7 @@
             FontSize="20"
             FontFamily="Montserrat"
             Cursor="Hand"
-            Height="28" VerticalAlignment="Top" Margin="694,7,56,0" RenderTransformOrigin="0.5,0.5" Background="#FF1AB9C5" Click="btnMinizar_Click" Width="NaN">
+            Height="28" VerticalAlignment="Top" Margin="896,7,56,0" RenderTransformOrigin="0.5,0.5" Background="#FF1AB9C5" Click="btnMinizar_Click" Width="NaN">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="1" ScaleX="-1"/>
@@ -100,17 +100,14 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <TextBlock Foreground="#FF03ADC5" FontSize="10" FontWeight="Bold" Margin="10,2,720,427" 
+                <Image Source="/Img/Icono.png" Margin="9,3,960,622" />
+                <TextBlock Foreground="#FF03ADC5" FontSize="10" FontWeight="Bold" Margin="38,6,890,623" 
                                Height="NaN" 
                                Width="NaN" TextAlignment="Center"><Run Language="es-es" Text="FIG-DETECT"/></TextBlock>
-                <TextBlock Foreground="Cyan" FontSize="25" Margin="120,28,149,370" 
+                <TextBlock Foreground="Cyan" FontSize="25" Margin="120,28,149,583" 
             Height="NaN" 
             Width="NaN" FontFamily="Rockwell Extra Bold" TextAlignment="Center"><Run Language="es-es" Text="Detección de Figuras Geométricas"/></TextBlock>
-
-                <TextBlock Foreground="LightCyan" FontSize="18" FontWeight="Bold" Margin="488,240,168,277" 
-                               Height="NaN" 
-                               Width="NaN"><Run Language="es-es" Text=" H O S P I T A L"/></TextBlock>
-                <Button x:Name="btnGeoShapesInfoShow" FontSize="25" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Width="242" Margin="34,142,0,0" Click="btnGeoShapesInfoShow_Click">
+                <Button x:Name="btnGeoShapesInfoShow" FontSize="25" Height="36" HorizontalAlignment="Left" VerticalAlignment="Top" Width="242" Margin="43,205,0,0" Click="btnGeoShapesInfoShow_Click">
                     <Button.Content>
                         <TextBlock FontFamily="Freestyle Script" Foreground="LightCyan" FontSize="20" Background="Transparent" Width="205" TextAlignment="Center" FontWeight="Bold">Obtener Datos Figuras</TextBlock>
                     </Button.Content>
@@ -136,7 +133,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <Button x:Name="btnLoadImage" FontSize="25" Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="242" Margin="34,84,0,0" Click="btnLoadImage_Click">
+                <Button x:Name="btnLoadImage" FontSize="25" Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="242" Margin="43,132,0,0" Click="btnLoadImage_Click">
                     <Button.Content>
                         <TextBlock FontFamily="Freestyle Script" Foreground="LightCyan" FontSize="25" Background="Transparent" Width="183" TextAlignment="Center" FontWeight="Bold">Cargar Imagen</TextBlock>
                     </Button.Content>
@@ -162,10 +159,93 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <TextBlock x:Name="lblMensajes" Foreground="LightCyan" FontSize="35" FontWeight="Bold" Margin="282,269,220,136" FontFamily="Freestyle Script" Text="Información de Figuras" Height="NaN" Width="NaN" TextAlignment="Center"/>
-                <Image x:Name="displayLoadOriginal" HorizontalAlignment="Left"  Height="164" Margin="538,84,0,0" VerticalAlignment="Top" Width="178"/>
-                <Image x:Name="displayResultImage" HorizontalAlignment="Left" Height="164" Margin="297,84,0,0" VerticalAlignment="Top" Width="178"/>
-                <DataGrid x:Name="displayInfoDataFigures" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="128,317,128,54" Height="NaN"/>
+                <TextBlock Foreground="LightCyan" FontSize="35" FontWeight="Bold" Margin="354,337,384,262" FontFamily="Freestyle Script" Text="Información de Figuras" Height="NaN" Width="NaN" TextAlignment="Center"/>
+
+                <TextBlock x:Name="lblMensajes" Foreground="LightCyan" FontSize="20" FontWeight="Bold" Margin="676,72,62,551" FontFamily="Freestyle Script" Text="" Height="NaN" Width="NaN" TextAlignment="Center"/>
+                <Image x:Name="displayLoadOriginal" HorizontalAlignment="Left"  Margin="326,102,0,0" VerticalAlignment="Top"  Height="223" Width="266"/>
+                <Image x:Name="displayResultImage" HorizontalAlignment="Left"  Margin="669,102,0,0" VerticalAlignment="Top" Height="223" Width="266"/>
+                <DataGrid x:Name="displayInfoDataFigures" 
+                  Margin="43,388,29,20" 
+                  AutoGenerateColumns="False"
+                  ColumnWidth="*"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  RowBackground="LightCyan"
+                  AlternatingRowBackground="White"
+                  HorizontalGridLinesBrush="DarkCyan"
+                  VerticalGridLinesBrush="DarkCyan"
+                  BorderBrush="DarkCyan"
+                  BorderThickness="1"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="True">
+
+                   
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tipo de Figura" Binding="{Binding ShapeType}" Width="120"/>
+                        <DataGridTextColumn Header="Área" Binding="{Binding Area}" Width="120"/>
+                        <DataGridTextColumn Header="Perímetro" Binding="{Binding Perimeter}" Width="180"/>
+                        <DataGridTextColumn Header="N° de Aristas" Binding="{Binding NumberOfEdges}" Width="100"/>
+
+                      
+                        <DataGridTemplateColumn Header="Distancias entre Aristas" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding EdgeDistancesAsString}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                   
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="LightCyan"/>
+                            <Setter Property="BorderBrush" Value="DarkCyan"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                    <Setter Property="Background" Value="DarkCyan"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="DarkCyan"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="Height" Value="40"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="LightCyan"/>
+                            
+                            <Style.Triggers>
+                                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                    <Setter Property="Background" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="DarkCyan"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                </DataGrid>
             </Grid>
         </Border>
     </Border>
