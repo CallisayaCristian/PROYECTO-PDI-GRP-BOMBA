@@ -1,269 +1,196 @@
-﻿using Microsoft.Win32;
-using OpenCvSharp;
-using OpenCvSharp.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using Point = OpenCvSharp.Point;
-using System.Drawing.Imaging;
-using AForge.Imaging;
-using AForge.Imaging.Filters;
-using Pen = System.Drawing.Pen;
+﻿    using Microsoft.Win32;
+    using OpenCvSharp;
+    using OpenCvSharp.Extensions;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Windows;
+    using System.Windows.Media.Imaging;
+    using Point = OpenCvSharp.Point;
 
 
-
-
-namespace PDI_ProyectoGrpBomba
-{
-    using static OpenCvSharp.ConnectedComponents;
-
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    using WpfWindow = System.Windows.Window;
-    public partial class MainWindow : WpfWindow
+    namespace PDI_ProyectoGrpBomba
     {
-        BitmapImage original_img;
-        BitmapImage labeledImage;
-        int objetosDetectados;
+        using static OpenCvSharp.ConnectedComponents;
 
+        /// <summary>
+        /// Interaction logic for MainWindow.xaml
+        /// </summary>
+        using WpfWindow = System.Windows.Window;
+        public partial class MainWindow : WpfWindow
+        {
+            BitmapImage original_img;
+            SmsError Sms_error;
 
-        SmsError Sms_error;
-
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-        #region BOTONES DE CERRAR Y MINIMIZAR
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-        private void btnMinizar_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-        #endregion
-
-        #region CARGAR IMAGEN
-        private void btnLoadImage_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            try
+            public MainWindow()
             {
-                if (openFileDialog.ShowDialog() == true)
+                InitializeComponent();
+            }
+            #region BOTONES DE CERRAR Y MINIMIZAR
+            private void btnClose_Click(object sender, RoutedEventArgs e)
+            {
+                Application.Current.Shutdown();
+            }
+            private void btnMinizar_Click(object sender, RoutedEventArgs e)
+            {
+                WindowState = WindowState.Minimized;
+            }
+            #endregion
+
+            #region CARGAR IMAGEN
+            private void btnLoadImage_Click(object sender, RoutedEventArgs e)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                try
                 {
-                    string filename = openFileDialog.FileName;
-                    original_img = new BitmapImage(new Uri(filename));
-                    displayLoadOriginal.Source = original_img;
-                    displayResultImage.Source = original_img;
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        string filename = openFileDialog.FileName;
+                        original_img = new BitmapImage(new Uri(filename));
+                        displayLoadOriginal.Source = original_img;
+                        displayResultImage.Source = original_img;
+                    }
+                }
+                catch (Exception)
+                {
+                    Sms_error = new SmsError("Error al cargar la imagen");
+                    Sms_error.Show();
                 }
             }
-            catch (Exception)
+            #endregion
+
+            #region DETECTAR FIGURAS GEOMETRICAS CON LIBRERIA OpenCV
+            private void btnGeoShapesInfoShow_Click(object sender, RoutedEventArgs e)
             {
-                Sms_error = new SmsError("Error al cargar la imagen");
-                Sms_error.Show();
-            }
-        }
-        #endregion
-
-        #region DETECTAR FIGURAS GEOMETRICAS CON LIBRERIA OpenCV
-        private void btnGeoShapesInfoShow_Click(object sender, RoutedEventArgs e)
-        {
-            if (displayLoadOriginal.Source != null)
-            {
-                Bitmap bitmap = BitmapImageToBitmap((BitmapImage)displayLoadOriginal.Source);
-                Mat mat = BitmapToMat(bitmap);
-                var shapesInfo = ProcessImageAndGetShapesInfo(mat);
-                displayInfoDataFigures.ItemsSource = shapesInfo;
-
-                /// Detedectar Objetos
-                DetectarObjetos();
-            }
-            else
-            {
-                Sms_error = new SmsError("Por favor, carga una imagen primero.");
-                Sms_error.Show();
-                
-            }
-        }
-        private Bitmap BitmapImageToBitmap(BitmapImage bitmapImage)
-        {
-            using (MemoryStream outStream = new MemoryStream())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapImage));
-                enc.Save(outStream);
-                Bitmap bitmap = new Bitmap(outStream);
-
-                return new Bitmap(bitmap);
-            }
-        }
-        private Mat BitmapToMat(Bitmap bitmap)
-        {
-            return bitmap.ToMat();
-        }
-
-        private List<ShapeInfo> ProcessImageAndGetShapesInfo(Mat mat)
-        {
-            var shapesInfo = new List<ShapeInfo>();
-
-            Mat gray = new Mat();
-            Cv2.CvtColor(mat, gray, ColorConversionCodes.BGR2GRAY);
-            Cv2.GaussianBlur(gray, gray, new OpenCvSharp.Size(5, 5), 0);
-            Cv2.Canny(gray, gray, 50, 150);
-
-            OpenCvSharp.Point[][] contours;
-            Cv2.FindContours(gray, out contours, out HierarchyIndex[] hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
-
-            foreach (var contour in contours)
-            {
-                var epsilon = 0.02 * Cv2.ArcLength(contour, true);
-                var approx = Cv2.ApproxPolyDP(contour, epsilon, true);
-
-                if (Cv2.ContourArea(approx) > 100)
+                if (displayLoadOriginal.Source != null)
                 {
-                    var shapeInfo = new ShapeInfo();
-                    shapeInfo.NumberOfEdges = approx.Length;
+                    Bitmap bitmap = BitmapImageToBitmap((BitmapImage)displayLoadOriginal.Source);
+                    Mat mat = BitmapToMat(bitmap);
+                    var shapesInfo = ProcessImageAndGetShapesInfo(mat);
+                    displayInfoDataFigures.ItemsSource = shapesInfo;
 
-                    if (approx.Length == 3)
-                    {
-                        shapeInfo.ShapeType = "Triángulo";
-                    }
-                    else if (approx.Length == 4)
-                    {
-                        var rect = Cv2.BoundingRect(approx);
-                        var aspectRatio = Math.Abs((double)rect.Width / rect.Height - 1);
-                        shapeInfo.ShapeType = aspectRatio <= 0.05 ? "Cuadrado" : "Rectángulo";
-                    }
-                    else if (approx.Length == 5)
-                    {
-                        shapeInfo.ShapeType = "Pentágono";
-                    }
-                    else
-                    {
-                        shapeInfo.ShapeType = "Círculo";
-                    }
-
-                    shapeInfo.Area = Cv2.ContourArea(approx);
-                    shapeInfo.Perimeter = Cv2.ArcLength(approx, true);
-                    shapeInfo.CalculateEdgeDistances(ConvertContourToPoints(approx));
-                    shapesInfo.Add(shapeInfo);
+                    // Mostrar la imagen procesada con los números en displayResultImage
+                    Bitmap resultBitmap = mat.ToBitmap();
+                    displayResultImage.Source = BitmapToBitmapImage(resultBitmap);
+                }
+                else
+                {
+                    Sms_error = new SmsError("Por favor, carga una imagen primero.");
+                    Sms_error.Show();
                 }
             }
-
-            return shapesInfo;
-        }
-        private List<OpenCvSharp.Point> ConvertContourToPoints(OpenCvSharp.Point[] contour)
-        {
-            List<OpenCvSharp.Point> points = new List<OpenCvSharp.Point>();
-            foreach (var point in contour)
+            private BitmapImage BitmapToBitmapImage(Bitmap bitmap)
             {
-                points.Add(point);
-            }
-            return points;
-        }
-
-
-        #endregion
-
-        #region DETECTAR OBJETOS CON LIBRERIA AForge
-        private Bitmap BitmapImage2Bitmap(BitmapSource bitmapSource)
-        {
-            Bitmap bitmap;
-            using (MemoryStream outStream = new MemoryStream())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapSource));
-                enc.Save(outStream);
-                bitmap = new Bitmap(outStream);
-            }
-            return bitmap;
-        }
-        void DetectarObjetos()
-        {
-            Bitmap auxImage = BitmapImage2Bitmap(original_img);
-
-            Grayscale grayscaleFilter = new Grayscale(0.3, 0.59, 0.11);
-            Bitmap grayscaleImage = grayscaleFilter.Apply(auxImage);
-            SobelEdgeDetector edgeDetector = new SobelEdgeDetector();
-            Bitmap edgeImage = edgeDetector.Apply(grayscaleImage);
-            Threshold thresholdFilter = new Threshold(100);
-            thresholdFilter.ApplyInPlace(edgeImage);
-
-            //Grayscale grayscaleFilter = new Grayscale(0.3, 0.59, 0.11);
-            //Bitmap grayscaleImage = grayscaleFilter.Apply(auxImage);
-            //Threshold thresholdFilter = new Threshold(245);
-            //thresholdFilter.ApplyInPlace(grayscaleImage);
-            //Invert invert = new Invert();
-            //grayscaleImage = invert.Apply(grayscaleImage);
-
-            BlobCounter blobCounter = new BlobCounter();
-            blobCounter.ProcessImage(edgeImage);
-            //blobCounter.ProcessImage(grayscaleImage);
-            AForge.Imaging.Blob[] blobs = blobCounter.GetObjectsInformation();
-            int minSize = 1000;
-            objetosDetectados = 0;
-            foreach (var blob in blobs)
-            {
-                if (blob.Area >= minSize)
+                using (MemoryStream memory = new MemoryStream())
                 {
-                    System.Drawing.Rectangle rect = blob.Rectangle;
-                    DrawRectangle(auxImage, rect, System.Drawing.Color.Red);
-                    objetosDetectados++;
+                    bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                    memory.Position = 0;
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = memory;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+                    return bitmapImage;
                 }
             }
-            labeledImage = BitmapToBitmapImage(auxImage);
-            displayResultImage.Source = labeledImage;
-            lblMensajes.Text = $"  Objetos detectados: {objetosDetectados}  ";
+        
+            private Bitmap BitmapImageToBitmap(BitmapImage bitmapImage)
+                {
+                    using (MemoryStream outStream = new MemoryStream())
+                    {
+                        BitmapEncoder enc = new BmpBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(bitmapImage));
+                        enc.Save(outStream);
+                        Bitmap bitmap = new Bitmap(outStream);
 
-        }
-        private BitmapImage BitmapToBitmapImage(Bitmap bitmap)
-        {
-            using (MemoryStream memory = new MemoryStream())
+                        return new Bitmap(bitmap);
+                    }
+                }
+                private Mat BitmapToMat(Bitmap bitmap)
+                {
+                    return bitmap.ToMat();
+                }
+
+            private List<ShapeInfo> ProcessImageAndGetShapesInfo(Mat mat)
             {
-                bitmap.Save(memory, ImageFormat.Png);
-                memory.Position = 0;
+                var shapesInfo = new List<ShapeInfo>();
+                int shapeCounter = 1; // Contador para los números de las figuras
 
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
-                bitmapImage.Freeze();
+                Mat gray = new Mat();
+                Cv2.CvtColor(mat, gray, ColorConversionCodes.BGR2GRAY);
+                Cv2.GaussianBlur(gray, gray, new OpenCvSharp.Size(5, 5), 0);
+                Cv2.Canny(gray, gray, 50, 150);
 
-                return bitmapImage;
+                OpenCvSharp.Point[][] contours;
+                Cv2.FindContours(gray, out contours, out HierarchyIndex[] hierarchy, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
+
+                foreach (var contour in contours)
+                {
+                    var epsilon = 0.02 * Cv2.ArcLength(contour, true);
+                    var approx = Cv2.ApproxPolyDP(contour, epsilon, true);
+
+                    if (Cv2.ContourArea(approx) > 100)
+                    {
+                        var shapeInfo = new ShapeInfo();
+                        shapeInfo.ShapeNumber = shapeCounter; // Asignar el número de la figura
+                        shapeInfo.NumberOfEdges = approx.Length;
+
+                        if (approx.Length == 3)
+                        {
+                            shapeInfo.ShapeType = "Triángulo";
+                        }
+                        else if (approx.Length == 4)
+                        {
+                            var rect = Cv2.BoundingRect(approx);
+                            var aspectRatio = Math.Abs((double)rect.Width / rect.Height - 1);
+                            shapeInfo.ShapeType = aspectRatio <= 0.05 ? "Cuadrado" : "Rectángulo";
+                        }
+                        else if (approx.Length == 5)
+                        {
+                            shapeInfo.ShapeType = "Pentágono";
+                        }
+                        else
+                        {
+                            shapeInfo.ShapeType = "Círculo";
+                        }
+
+                        shapeInfo.Area = Cv2.ContourArea(approx);
+                        shapeInfo.Perimeter = Cv2.ArcLength(approx, true);
+                        shapeInfo.CalculateEdgeDistances(ConvertContourToPoints(approx));
+                        shapesInfo.Add(shapeInfo);
+
+                        // Dibujar el número de la figura en el centro del contorno
+                        var moments = Cv2.Moments(contour);
+                        int centerX = (int)(moments.M10 / moments.M00);
+                        int centerY = (int)(moments.M01 / moments.M00);
+                        Cv2.PutText(mat, shapeCounter.ToString(), new OpenCvSharp.Point(centerX, centerY), HersheyFonts.HersheySimplex, 1, Scalar.Black, 2);
+
+                        shapeCounter++;
+                    }
+                }
+
+                return shapesInfo;
             }
-        }
-        private void DrawRectangle(Bitmap bitmap, System.Drawing.Rectangle rect, System.Drawing.Color color)
-        {
-            for (int x = rect.Left; x < rect.Right; x++)
+            private List<OpenCvSharp.Point> ConvertContourToPoints(OpenCvSharp.Point[] contour)
             {
-                bitmap.SetPixel(x, rect.Top, color);
-                bitmap.SetPixel(x, rect.Bottom - 1, color);
+                List<OpenCvSharp.Point> points = new List<OpenCvSharp.Point>();
+                foreach (var point in contour)
+                {
+                    points.Add(point);
+                }
+                return points;
             }
-
-            for (int y = rect.Top; y < rect.Bottom; y++)
-            {
-                bitmap.SetPixel(rect.Left, y, color);
-                bitmap.SetPixel(rect.Right - 1, y, color);
-            }
+            #endregion
         }
-        #endregion
-
-    }
     #region Class ShapeInfo
     public class ShapeInfo
     {
+        public int ShapeNumber { get; set; } // Nueva propiedad para el número de la figura
         public string ShapeType { get; set; }
         public double Area { get; set; }
         public double Perimeter { get; set; }
         public int NumberOfEdges { get; set; }
-
-        // Podrías calcular y almacenar las distancias entre los vértices aquí
         public List<double> EdgeDistances { get; set; }
 
         public ShapeInfo()
@@ -271,7 +198,6 @@ namespace PDI_ProyectoGrpBomba
             EdgeDistances = new List<double>();
         }
 
-        // Método para calcular y almacenar las distancias entre los vértices
         public void CalculateEdgeDistances(List<Point> vertices)
         {
             if (vertices == null || vertices.Count < 2)
@@ -288,15 +214,9 @@ namespace PDI_ProyectoGrpBomba
                 }
             }
         }
-        public string EdgeDistancesAsString
-        {
-            get
-            {
-                return string.Join(", ", EdgeDistances);
-            }
-        }
 
-        // Método para calcular la distancia entre dos puntos
+        public string EdgeDistancesAsString => string.Join(", ", EdgeDistances);
+
         private double CalculateDistance(Point point1, Point point2)
         {
             double deltaX = point2.X - point1.X;
@@ -304,7 +224,6 @@ namespace PDI_ProyectoGrpBomba
             return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
         }
 
-        // Método para obtener las distancias como una cadena formateada
         public string GetFormattedEdgeDistances()
         {
             return string.Join(", ", EdgeDistances);
@@ -320,13 +239,14 @@ namespace PDI_ProyectoGrpBomba
 
         public MyPoint(double x, double y)
         {
-            X = x;
-            Y = y;
+           X = x;
+           Y = y;
         }
     }
+
     #endregion
 
+    }
 
-}
 
 

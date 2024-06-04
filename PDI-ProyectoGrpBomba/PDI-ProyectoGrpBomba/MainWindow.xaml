@@ -159,13 +159,13 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                <TextBlock Foreground="LightCyan" FontSize="35" FontWeight="Bold" Margin="354,337,384,262" FontFamily="Freestyle Script" Text="Información de Figuras" Height="NaN" Width="NaN" TextAlignment="Center"/>
+                <TextBlock Foreground="LightCyan" FontSize="35" FontWeight="Bold" Margin="354,350,384,249" FontFamily="Freestyle Script" Text="Información de Figuras" Height="NaN" Width="NaN" TextAlignment="Center"/>
 
                 <TextBlock x:Name="lblMensajes" Foreground="LightCyan" FontSize="20" FontWeight="Bold" Margin="676,72,62,551" FontFamily="Freestyle Script" Text="" Height="NaN" Width="NaN" TextAlignment="Center"/>
-                <Image x:Name="displayLoadOriginal" HorizontalAlignment="Left"  Margin="326,102,0,0" VerticalAlignment="Top"  Height="223" Width="266"/>
-                <Image x:Name="displayResultImage" HorizontalAlignment="Left"  Margin="669,102,0,0" VerticalAlignment="Top" Height="223" Width="266"/>
+                <Image x:Name="displayLoadOriginal" HorizontalAlignment="Left"  Margin="295,72,0,0" VerticalAlignment="Top"  Height="277" Width="321"/>
+                <Image x:Name="displayResultImage" HorizontalAlignment="Left"  Margin="639,72,0,0" VerticalAlignment="Top"  Height="277" Width="321"/>
                 <DataGrid x:Name="displayInfoDataFigures" 
-                  Margin="43,388,29,20" 
+                  Margin="43,400,29,20" 
                   AutoGenerateColumns="False"
                   ColumnWidth="*"
                   HeadersVisibility="Column"
@@ -181,15 +181,14 @@
                   CanUserResizeRows="False"
                   CanUserSortColumns="True">
 
-                   
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Tipo de Figura" Binding="{Binding ShapeType}" Width="120"/>
-                        <DataGridTextColumn Header="Área" Binding="{Binding Area}" Width="120"/>
-                        <DataGridTextColumn Header="Perímetro" Binding="{Binding Perimeter}" Width="180"/>
-                        <DataGridTextColumn Header="N° de Aristas" Binding="{Binding NumberOfEdges}" Width="100"/>
 
-                      
-                        <DataGridTemplateColumn Header="Distancias entre Aristas" Width="*">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Número" Binding="{Binding ShapeNumber}" Width="70"/>
+                        <DataGridTextColumn Header="Tipo de Figura" Binding="{Binding ShapeType}" Width="120"/>
+                        <DataGridTextColumn Header="Área" Binding="{Binding Area}" Width="100"/>
+                        <DataGridTextColumn Header="Perímetro" Binding="{Binding Perimeter}" Width="180"/>
+                        <DataGridTextColumn Header="N° de Vértices" Binding="{Binding NumberOfEdges}" Width="120"/>
+                        <DataGridTemplateColumn Header="Distancias entre Vértices" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding EdgeDistancesAsString}"/>
@@ -198,7 +197,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
 
-                   
+
                     <DataGrid.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="LightCyan"/>
@@ -232,7 +231,7 @@
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="LightCyan"/>
-                            
+
                             <Style.Triggers>
                                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
                                     <Setter Property="Background" Value="White"/>
